@@ -6,7 +6,6 @@ class JsonWebToken
  end
 
 def self.decode(token)
- byebug
  body = JWT.decode(token, JWT_SECRET)[0]
  HashWithIndifferentAccess.new body
 rescue JWT::DecodeError, JWT::VerificationError => e
