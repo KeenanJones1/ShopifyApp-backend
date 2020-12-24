@@ -1,12 +1,12 @@
 require "json_web_token.rb"
 
-class UserController < ApplicationController
+class UsersController < ApplicationController
  def show
   user = User.find(params["id"])
   if user
     render json: user.as_json(
-     only: [:username, :email],
-     include: {reading_lists: {only: [:id, :name, :type], include: {reading_list_books: {include: {book: {only: [:title, :author, :published_year, :genre, :description, :pages]}}}}}}
+     only: [:username],
+     include: {images: {only: [:id, :name, :imgUrl]}}
     )
   end
 end
@@ -25,8 +25,7 @@ end
 
 
 private 
-def user_params
- byebug
-  params.require(:user).permit(:username, :password)
-end
+  def user_params
+    params.require(:user).permit(:username, :password)
+  end
 end
