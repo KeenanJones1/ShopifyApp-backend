@@ -18,7 +18,7 @@ class AuthController < ApplicationController
     current_user = authorization_object.current_user
     user = User.find(current_user)
     if current_user 
-     render json: UserSerializer.new(user).to_serialized_json
+     render json: user.to_json(:only => [:username], :include => {:images => {:only => [:id, :name, :imgUrl]}})
    else
      render json: {error: 'Invalid Token'}, status: 401
     end

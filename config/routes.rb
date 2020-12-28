@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get 'myuser', to: 'auth#show', as: '/myuser'
   resources :user, only: [:create, :show]
   resources :images, only: [:index, :create, :show, :delete, :update]
+  post '/rails/active_storage/direct_uploads', to: 'direct_uploads#create'
 end
