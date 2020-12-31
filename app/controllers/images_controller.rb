@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
  wrap_parameters :image, include: [:name, :imgUrl]
+ 
 
  def index
   @images = Image.all
