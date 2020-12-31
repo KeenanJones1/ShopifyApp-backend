@@ -3,10 +3,10 @@ require 'authorization.rb'
 class AuthController < ApplicationController
   def create
     auth_object = Authentication.new(login_params)
-    user = User.find_by(username: params['username'])
+    user = User.find_by(username: params['user']['username'])
     if auth_object.authenticate
       render json: {
-        message: "Login successful!", token: auth_object.generate_token, username: user.username}, status: :ok
+        message: "Login successful!", token: auth_object.generate_token}, status: :ok
     else
       render json: {
         message: "Incorrect username/password combination"}, status: :unauthorized
@@ -26,6 +26,6 @@ class AuthController < ApplicationController
 
   private 
   def login_params
-    params.require(:auth).permit(:username, :password)
+    params.require(:user).permit(:username, :password)
   end
 end
