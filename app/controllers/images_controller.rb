@@ -3,9 +3,8 @@ class ImagesController < ApplicationController
  
 
  def index
-  @images = Image.all
-  # byebug
-  render json: @images
+  @image = Image.search(params[:search])
+  render json: @image
  end
 
  def show
@@ -34,6 +33,10 @@ class ImagesController < ApplicationController
  end 
 
  def delete
+  byebug
+ end
+
+ def search
   byebug
  end
 
