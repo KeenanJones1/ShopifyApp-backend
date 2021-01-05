@@ -3,8 +3,7 @@ class ImagesController < ApplicationController
  
 
  def index
-  @image = Image.search(params[:search])
-  render json: @image
+  byebug
  end
 
  def show
@@ -37,7 +36,9 @@ class ImagesController < ApplicationController
  end
 
  def search
-  byebug
+  # byebug
+  @image = Image.search(params[:search])
+  render json: @image
  end
 
 end
